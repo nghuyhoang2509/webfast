@@ -1,0 +1,34 @@
+@import "../../components/GlobalStyles/GlobalStyles.scss";
+
+.container {
+    background-color: $color-1;
+    height: 100vh;
+
+    .menu-tool {
+        background-color: $color-1;
+        position: relative;
+        padding: 10px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: $color-3;
+            width: 3px;
+            height: 100vh;
+        }
+
+        .title {
+            background-image: $gradient-2;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            text-align: left;
+        }
+    }
+
+    .board {
+        background-color: white;
+    }
+}
