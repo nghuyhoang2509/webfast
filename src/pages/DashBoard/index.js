@@ -1,17 +1,28 @@
 import React from "react";
 import "./Styles.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../features/auth";
+import { Button } from "antd";
 
-import { Row, Col, Typography } from "antd";
+import { auth } from "../../firebase";
 
 export default function DashBoard() {
+  const dispatch = useDispatch();
+  const authName = useSelector((state) => state.auth.name);
   return (
-    <div>
-      <Row className="container">
-        <Col className="menu-tool" span={6}>
-          <Typography.Title className="title">WebFast</Typography.Title>
-        </Col>
-        <Col className="board" span={18}></Col>
-      </Row>
+    <div className="wrapper">
+      <div className="logout">
+        {`Hello! ${authName}`}
+        <Button
+          onClick={() => {
+            auth.signOut();
+            dispatch(logout());
+          }}
+          className="m-2"
+        >
+          Logout
+        </Button>
+      </div>
     </div>
   );
 }
