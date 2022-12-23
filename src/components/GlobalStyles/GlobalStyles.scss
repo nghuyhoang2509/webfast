@@ -11,10 +11,22 @@ body {
     font-size: 18px;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
 }
 
 .m-4 {
@@ -27,6 +39,11 @@ body {
 
 .m-2 {
     margin: 1.2rem;
+}
+
+
+.m-1 {
+    margin: 1rem;
 }
 
 .mt-4 {
@@ -47,4 +64,8 @@ body {
 
 .mr-1 {
     margin-right: 0.8rem;
+}
+
+.p-4 {
+    padding: 2rem;
 }

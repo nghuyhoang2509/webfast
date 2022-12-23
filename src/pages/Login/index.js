@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import "./Styles.scss";
 import { Row, Col, Typography, Button } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { login } from "../../features/auth";
 import {
@@ -13,21 +15,33 @@ import { auth } from "../../firebase";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const authCurrent = useSelector((state) => state.auth);
   async function handleClickLogin() {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider);
   }
   useEffect(() => {
+    if (authCurrent.email) {
+      let from = location.state?.from?.pathname || "/";
+      navigate(from, { replace: true });
+    }
     const unSub = onAuthStateChanged(auth, (currentUser) => {
       dispatch(
-        login({ email: currentUser.email, name: currentUser.displayName })
+        login({
+          email: currentUser.email,
+          name: currentUser.displayName,
+          uid: currentUser.uid,
+        })
       );
     });
 
     return () => {
       unSub();
     };
-  }, [dispatch]);
+    // eslint-disable-next-line
+  }, [dispatch, authCurrent.email]);
 
   return (
     <Row>

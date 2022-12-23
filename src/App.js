@@ -17,13 +17,26 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/" element={<DashBoard />} />
-              <Route exact path="/design" element={<MakeWeb />} />
-            </Routes>
-          </AuthProvider>
+          <Routes>
+            <Route exact path="/login" element={<Login />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <AuthProvider>
+                  <DashBoard />
+                </AuthProvider>
+              }
+            />
+            <Route
+              path="/design/*"
+              element={
+                <AuthProvider>
+                  <MakeWeb />
+                </AuthProvider>
+              }
+            />
+          </Routes>
         </BrowserRouter>
       </Provider>
     </div>
