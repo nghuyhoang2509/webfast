@@ -1,13 +1,12 @@
 @import "../../components/GlobalStyles/GlobalStyles.scss";
 
 .container {
-    background-color: $color-1;
     height: 100vh;
 
     .menu-tool {
         background-color: $color-1;
         position: relative;
-        padding: 10px;
+        text-align: left;
 
         &::before {
             content: "";
@@ -30,5 +29,13 @@
 
     .board {
         background-color: white;
+        display: flex;
+        border: 2px black;
+        justify-content: center;
+
+        .row {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
